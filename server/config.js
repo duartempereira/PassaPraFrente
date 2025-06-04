@@ -1,5 +1,3 @@
-process.loadEnvFile()
-
 export const NODE_ENV = process.env.NODE_ENV
 
 export const NAME = process.env.APP_NAME
