@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Font*/
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body{
+  font-family: "Raleway", sans-serif;
+}
+
+.text{
+  color: var(--button);
+}
+
+.text-error{
+  color: red;
+}
+
+.texbox{
+  background-color: rgba(217, 217, 217, 25%);
+  border-radius: 8px;
+  border: 2px solid var(--button);
+}

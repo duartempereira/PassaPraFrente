@@ -1,0 +1,32 @@
+export const SALE_STATES = {
+  EM_ANALISE: 1,
+  REJEITADO: 2,
+  DISPONIVEL: 3,
+  CONCLUIDO: 4
+}
+
+export const PROPOSAL_SALE_STATES = {
+  EM_ANALISE: 1,
+  ACEITE: 2,
+  REJEITADO: 3
+}
+
+export const LOAN_STATES = {
+  EM_ANALISE: 1,
+  REJEITADO: 2,
+  DISPONIVEL: 3,
+  CONCLUIDO: 4
+}
+
+export const PROPOSAL_LOAN_STATES = {
+  EM_ANALISE: 1,
+  ACEITE: 2,
+  REJEITADO: 3
+}
+
+export const GIVEAWAY_STATES = {
+  EM_ANALISE: 1,
+  REJEITADO: 2,
+  DISPONIVEL: 3,
+  CONCLUIDO: 4
+}
