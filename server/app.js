@@ -1,5 +1,5 @@
 import express from 'express'
-import cors from 'cors'
+// import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import morgan from 'morgan'
@@ -29,11 +29,11 @@ import { configureCloudinary } from './src/services/cloudinary-service.js'
 
 const app = express()
 
-const corsOptions = {
-  origin: ['https://passaprafrente.vercel.app'],
-  methods: ['POST', 'GET', 'PUT', 'DELETE', 'PATCH'],
-  credentials: true
-}
+// const corsOptions = {
+//   origin: ['https://passaprafrente.vercel.app'],
+//   methods: ['POST', 'GET', 'PUT', 'DELETE', 'PATCH'],
+//   credentials: true
+// }
 
 const limiter = rateLimit({
   max: MAX,
@@ -46,7 +46,7 @@ configureCloudinary()
 // Middlewares
 NODE_ENV === 'development' ? app.use(morgan('dev')) : app.use(morgan('common'))
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(limiter)
 app.use(helmet())
