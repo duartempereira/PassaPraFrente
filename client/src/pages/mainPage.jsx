@@ -22,6 +22,8 @@ const Main = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000"
+
   // Parse URL search params for filters
   const getInitialFilters = useCallback(() => {
     const searchParams = new URLSearchParams(location.search)
@@ -72,7 +74,7 @@ const Main = () => {
       try {
         setLoading(true)
 
-        const responseSales = await fetch("http://localhost:5000/api/sales/available", {
+        const responseSales = await fetch(`${API_URL}/api/sales/available`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +82,7 @@ const Main = () => {
           credentials: "include",
         })
 
-        const responseLoans = await fetch("http://localhost:5000/api/loans/available", {
+        const responseLoans = await fetch(`${API_URL}/api/loans/available`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -88,7 +90,7 @@ const Main = () => {
           credentials: "include",
         })
 
-        const responseGiveaways = await fetch("http://localhost:5000/api/giveaways/available", {
+        const responseGiveaways = await fetch(`${API_URL}/api/giveaways/available`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -104,21 +106,9 @@ const Main = () => {
         const dataLoans = await responseLoans.json()
         const dataGiveaways = await responseGiveaways.json()
 
-        // For debugging - log the first item from each response to see the structure
-        // if (dataSales.message && dataSales.message.length > 0) {
-        //   console.log("Sample sales item:", dataSales.message[0])
-        // }
-        // if (dataLoans.message && dataLoans.message.length > 0) {
-        //   console.log("Sample loans item:", dataLoans.message[0])
-        // }
-        // if (dataGiveaways.message && dataGiveaways.message.length > 0) {
-        //   console.log("Sample giveaways item:", dataGiveaways.message[0])
-        // }
-
         const transformItems = (items) => {
           return items.message.map((item) => {
-            const itemCategory =
-              item.NomeCategoria
+            const itemCategory = item.NomeCategoria
 
             return {
               name: item.Titulo || item.titulo || item.title || "Sem título",
@@ -157,7 +147,7 @@ const Main = () => {
     }
 
     fetchShopData()
-  }, [isAuthenticated, dispatch, navigate])
+  }, [isAuthenticated, dispatch, navigate, API_URL])
 
   // Handle filter changes
   const handleFilterChange = (filterType, value) => {
@@ -168,7 +158,6 @@ const Main = () => {
       setFilterLoading(true)
     }
 
-    // Check if the value is actually different from current
     if (value === "all") {
       if (activeFilters[filterType]) {
         const newFilters = { ...activeFilters }
@@ -182,7 +171,6 @@ const Main = () => {
       })
     }
 
-    // Simulate filter loading effect (only for non-search filters)
     if (!isSearchFilter) {
       setTimeout(() => {
         setFilterLoading(false)
@@ -194,7 +182,6 @@ const Main = () => {
     setFilterLoading(true)
     setActiveFilters({})
 
-    // Simulate filter loading effect
     setTimeout(() => {
       setFilterLoading(false)
     }, 300)

@@ -18,10 +18,13 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Usar variável de ambiente REACT_APP_API_URL
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
   const handleSubmit = async (values) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/login`, {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -34,7 +37,7 @@ const Login = () => {
         setIsLoading(false);
         return;
       }
-      
+
       dispatch(login({ user: { email: values.email, message: data.message } }));
 
       toast.success(`Bem vindo: ${data.message.Nome}`);
