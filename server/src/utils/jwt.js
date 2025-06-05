@@ -6,13 +6,14 @@ import {
   ACCESS_TOKEN_SECRET_KEY,
   REFRESH_TOKEN_EXPIRE,
   REFRESH_TOKEN_SECRET_KEY,
+  NODE_ENV,
   ACTIVATION_CODE_EXPIRE
 } from '../../config.js'
 
 export const tokenOptions = {
-  secure: false, // força false para desenvolvimento local
+  secure: NODE_ENV === 'production',
   httpOnly: false,
-  sameSite: 'lax' // menos restritivo para testes
+  sameSite: NODE_ENV === 'production' ? 'none' : 'lax'
 }
 
 export const generateAccessToken = (user) => {
