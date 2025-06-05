@@ -26,7 +26,7 @@ const SaleProposal = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/sales/id/${id}`,
+          `http://localhost:5000/api/sales/id/${id}`,
           {
             method: "GET",
             headers: {
@@ -56,7 +56,7 @@ const SaleProposal = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/proposal-sales/create/${id}`,
+        `http://localhost:5000/api/proposal-sales/create/${id}`,
         {
           method: "POST",
           headers: {

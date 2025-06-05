@@ -30,7 +30,7 @@ function LookDraw(props) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/giveaways/id/${id}`,
+          `http://localhost:5000/api/giveaways/id/${id}`,
           {
             method: "GET",
             headers: {
@@ -67,7 +67,7 @@ function LookDraw(props) {
   const enterGiveaway = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/entry-giveaway/create/${data.Sorteio_ID}`,
+        `http://localhost:5000/api/entry-giveaway/create/${data.Sorteio_ID}`,
         {
           method: "POST",
           headers: {

@@ -27,7 +27,7 @@ const NewPassword = () => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/users/update-password`,
+          `http://localhost:5000/api/users/update-password`,
           {
             method: "PATCH",
             headers: {
