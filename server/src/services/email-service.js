@@ -1,8 +1,13 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url' // <-- IMPORTANTE
 import ejs from 'ejs'
 import nodemailer from 'nodemailer'
 
-import { DIRNAME, SMTP_HOST, SMTP_MAIL, SMTP_PASSWORD, SMTP_PORT, SMTP_SERVICE } from '../../config.js'
+import { SMTP_HOST, SMTP_MAIL, SMTP_PASSWORD, SMTP_PORT, SMTP_SERVICE } from '../../config.js'
+
+// Obter __dirname estilo ES Module
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 class EmailService {
   static async sendEmail (options) {
@@ -18,7 +23,7 @@ class EmailService {
 
     const { email, subject, template, emailData } = options
 
-    const templatePath = path.join(DIRNAME, 'src/mails', template)
+    const templatePath = path.join(__dirname, '../mails', template)
 
     const html = await ejs.renderFile(templatePath, emailData)
 
