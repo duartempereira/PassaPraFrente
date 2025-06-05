@@ -13,7 +13,7 @@ import {
 export const tokenOptions = {
   secure: NODE_ENV === 'production',
   httpOnly: false,
-  sameSite: 'strict'
+  sameSite: NODE_ENV === 'production' ? 'none' : 'lax'
 }
 
 export const generateAccessToken = (user) => {
